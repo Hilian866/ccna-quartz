@@ -1,0 +1,58 @@
+name: Pubblica il sito Quartz su GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  # PERCHÉ: le note stanno in un altro repository, quindi un push lì non fa partire questa build.
+  # La build giornaliera raccoglie le note nuove; si può anche lanciare a mano da Actions.
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Cronologia completa per le date delle pagine
+      - name: Scarica le note (repository pubblico)
+        uses: actions/checkout@v4
+        with:
+          repository: Hilian866/ccna-appunti
+          path: content
+          fetch-depth: 0
+      - name: Crea la home dall'indice delle note
+        run: cp content/_Index_CCNA.md content/index.md
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Installa le dipendenze
+        run: npm ci
+      - name: Costruisci il sito
+        run: npx quartz build
+      - name: Carica il sito
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pubblica su GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
