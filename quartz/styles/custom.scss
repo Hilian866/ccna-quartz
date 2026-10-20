@@ -1,3 +1,92 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// Home del sito e pagina "Il corso giorno per giorno".
+// PERCHÉ: usa le variabili del tema di Quartz (--light, --lightgray, --dark...), quindi segue
+// da solo la modalità chiara e scura.
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+  margin: 0.8rem 0 1.6rem;
+
+  &.wide {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+.home-card {
+  border: 1px solid var(--lightgray);
+  border-radius: 10px;
+  padding: 0.7rem 1rem 0.8rem;
+  background: var(--light);
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 0 0 0.4rem;
+
+    span {
+      float: right;
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+  }
+
+  &.critico {
+    border-top: 3px solid #e24b4a;
+  }
+
+  &.importante {
+    border-top: 3px solid #ef9f27;
+  }
+
+  &.medio {
+    border-top: 3px solid var(--gray);
+  }
+
+  .bar {
+    height: 4px;
+    background: var(--lightgray);
+    border-radius: 2px;
+    margin: 0.3rem 0 0.5rem;
+
+    i {
+      display: block;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+  }
+}
+
+.chips p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.4rem 0 1.2rem;
+
+  a {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--lightgray);
+    border-radius: 8px;
+    background: var(--light);
+    font-size: 0.85rem;
+  }
+}

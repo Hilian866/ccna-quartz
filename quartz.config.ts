@@ -17,7 +17,7 @@ const config: QuartzConfig = {
     },
     locale: "it-IT",
     baseUrl: "hilian866.github.io/ccna-quartz",
-    ignorePatterns: ["private", "templates", ".obsidian", "Tools", ".githooks"],
+    ignorePatterns: ["private", "templates", ".obsidian", "Tools", ".githooks", "_Index_CCNA"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",

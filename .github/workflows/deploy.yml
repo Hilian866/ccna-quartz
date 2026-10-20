@@ -32,8 +32,8 @@ jobs:
           repository: Hilian866/ccna-appunti
           path: content
           fetch-depth: 0
-      - name: Crea la home dall'indice delle note
-        run: cp content/_Index_CCNA.md content/index.md
+      - name: Genera la home e la pagina dei giorni dalle note
+        run: python3 scripts/build_home.py content
       - uses: actions/setup-node@v4
         with:
           node-version: 22
