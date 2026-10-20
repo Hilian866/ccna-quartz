@@ -90,3 +90,45 @@
     font-size: 0.85rem;
   }
 }
+
+// BEGIN tema scuro
+// PERCHÉ: Quartz usa --dark sia per titoli sia per il grassetto; qui i titoli sono dorati e il
+// grassetto resta color crema, quindi i titoli si impostano a parte.
+:root[saved-theme="dark"] {
+  h1, h2, h3, h4, h5, h6, .article-title {
+    color: #e3c98f;
+  }
+
+  strong {
+    color: #f3ede0;
+  }
+
+  // PERCHÉ: Quartz mette un riquadro evidenziato dietro i link interni; il colore arancio basta
+  // a distinguerli, e la sottolineatura al passaggio del mouse conferma che sono cliccabili.
+  a.internal {
+    background-color: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  hr {
+    border-color: #f3ede0;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid #d6d2ca;
+    padding: 0.35rem 0.6rem;
+  }
+
+  th {
+    color: #e3c98f;
+  }
+}
+// END tema scuro
